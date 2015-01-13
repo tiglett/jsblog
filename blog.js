@@ -23,6 +23,7 @@ function initBlog() {
 
 function loadLastXPosts(numPosts) {
     if(postList) {
+        clearPosts();
         var i;
         for(i=0; i<postList.length && i<5; i++) {
             pushPost(postList[i].name);
