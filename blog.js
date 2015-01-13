@@ -11,7 +11,24 @@ var currentViewMode = ViewModes.STREAM;
 var postList;
 
 function initBlog() {
-    getPostList();
+    var titleObject = document.getElementById("titleLink");
+    titleObject.addEventListener("click", function(evt) {
+        evt.preventDefault();
+        loadLastXPosts(5);
+    });
+    getPostList(function() {
+        loadLastXPosts(5);
+    });
+}
+
+function loadLastXPosts(numPosts) {
+    if(postList) {
+        var i;
+        for(i=0; i<postList.length && i<5; i++) {
+            pushPost(postList[i].name);
+        }
+    }
+
 }
 
 function getPostFromList(post) {
@@ -37,9 +54,12 @@ function clearPosts() {
     }
 }
 
-function getPostList() {
+function getPostList(callback) {
     var xhtr = new XMLHttpRequest();
-    xhtr.onload = receivePostList;
+    xhtr.addEventListener("load", function() {
+        receivePostList(this);
+        callback();
+    }, false);
     xhtr.open("GET", "http://" + siteRootURL + "/posts/postList.json", true);
     xhtr.send();
 }
@@ -79,6 +99,11 @@ function receivePost(response) {
 function loadSinglePost(post) {
     currentViewMode = ViewModes.SINGLE;
     clearPosts();
+    pushPost(post);
+}
+
+function pushPost(post) {
+    var postContainer = document.getElementById("postContainer");
     loadPost(post, function(postNode, err) {
         if(!err) {
             var postItemFromList = getPostFromList(post);
@@ -88,21 +113,18 @@ function loadSinglePost(post) {
                 var timeText = document.createTextNode("Date published: " + postItemFromList.date);
                 timeNode.appendChild(timeText);
                 postNode.appendChild(timeNode);
+                postNode.setAttribute("id", "post-" + postItemFromList.name);
             }
-            pushPost(postNode);
+            postContainer.appendChild(postNode);
         } else {
             console.err(err);
         }
     });
+
 }
 
-function pushPost(postNode) {
-    var postContainer = document.getElementById("postContainer");
-    postContainer.appendChild(postNode);
-}
-
-function receivePostList() {
-    var data = this.responseText;
+function receivePostList(response) {
+    var data = response.responseText;
     postList = JSON.parse(data);
     postList.sort(function(a, b) {
         return Date.parse(b.date) - Date.parse(a.date);
@@ -127,7 +149,6 @@ function receivePostList() {
         postListItem.appendChild(postLinkItem);
         postListElement.appendChild(postListItem);
     }
-    loadSinglePost(postList[0].name);
 }
 
 function postFilter(postText) {
