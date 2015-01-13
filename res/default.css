@@ -1,0 +1,127 @@
+@charset "utf-8";
+#pageHeader {
+    font-size:          2em;
+    text-align:         center;
+}
+#pageHeader a{
+    font-family:    "Terminus", monospace, monospace;
+    color:          rgba(255, 73, 33, 0.4);
+    text-shadow:    0.03em -0.05em 0em rgba(33, 200, 53, 0.4), -0.04em 0.03em 0em rgba(140, 33, 255, 0.4);
+    
+}
+header {
+    font-size:          1.7em;
+}
+header a {
+    text-decoration:    none;
+}
+body {
+    background-image:       url("background.png");
+    background-repeat:      none;
+    background-attachment:  fixed;
+    background-position:    center;
+    background-size:        cover;
+    margin:                 0;
+    padding:                0;
+    overflow-y:             scroll;
+}
+main {
+    min-height:     100vh;
+    width:          70em;
+    margin-right:   13em;
+    margin-top:     0;
+    margin-bottom:  0;
+    background:     #FFFFFF;
+    box-shadow:     0em 0em 2em 3em rgba(0, 0, 0, 0.3);
+}
+article {
+    box-shadow: 0em 1em 2em 0.2em rgba(0, 0, 0, 0.3);
+    margin:     2em 0em;
+    padding:    1em 2em;
+    width:      auto;
+}
+
+#navbarContainer {
+    margin:         0em 2em;
+    width:          13em;
+    height:         3em;
+    flex-shrink:    0;
+    overflow:       hidden;
+    box-shadow:     0em 1em 2em 0.2em rgba(0, 0, 0, 0.3);
+    padding:        0.2em 0.1em;
+}
+
+#navbarContainer header {
+    font-size:  1.4em;
+    text-align: center;
+}
+
+#navbarContainer ul {
+    list-style-type:    none;
+}
+
+#navbarContainer li {
+    margin:             0.2em 0;
+}
+
+#navbarContainer a {
+    text-decoration:    none;
+    color:              #000000;
+}
+
+#navbarContainer a:hover {
+    color:              #888888;
+    text-shadow:    0em 0em 0.05em #000000;
+}
+
+#navbarContainer nav {
+    height:     1em;
+    display:    none;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#navbarContainer:hover nav, #navbarContainer:hover {
+    height:     auto;
+}
+
+#navbarContainer:hover nav {
+    display:    initial;
+}
+
+#postList {
+    text-align: center;
+    padding:    0.3em;
+}
+
+.container {
+    display:            flex;
+    flex-direction:     row;
+    justify-content:    center;
+    align-items:        flex-start;
+    align-content:      flex-start;
+    min-height:         100vh;
+    padding:            0;
+}
+
+time {
+    font-size:  0.8em;
+}
+
+article h1 {
+    text-align: center;
+    font-size:  2.7em;
+}
+article h2 {
+    font-size:  2.0em;
+}
+article h3 {
+    font-size:  1.6em;
+}
+article h3 {
+    font-size:  1.2em;
+}
+article img {
+    max-width:  30em;
+    max-height:  30em;
+}

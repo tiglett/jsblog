@@ -1,0 +1,4 @@
+posts/
+res/*
+!res/default.css
+markdown.min.js
